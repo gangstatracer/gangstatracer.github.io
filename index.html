@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Робот Альфред</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/alfred.css" rel="stylesheet">
+    <link href="img/favicon.ico" rel="icon" type="image/x-icon">
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Робот Альфред</a>
+            </div>
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://github.com/gangstatracer">by @gangstatracer</a></li>
+              </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-2 sidebar">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="btn-group btn-group-xs">
+                            <a class="btn btn-default js-run">Запуск</a>
+                            <a class="btn btn-default js-reset">Сброс</a>
+                            <a class="btn btn-default js-new-game">Новое поле</a>
+                        </div>
+                    </div>
+                </div>
+				<div class="row">
+					<div class="col-xs-12">
+						<table class="table table-condensed table-hover">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Команда</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>Вперед</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+            </div>
+            <div class="col-xs-10 col-xs-offset-2">
+                <div class="main no-gutter" id="grid">
+                    <div class="row">
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/alfred.js"></script>
+  </body>
+</html>
