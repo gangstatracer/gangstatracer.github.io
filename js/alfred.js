@@ -6,6 +6,36 @@ const number_of_walls = 15;
 var field = [];
 var robot_start = {};
 
+var AlfredModel = function() {
+	var self = this;
+	
+	//commands section
+	self.commands = ko.observableArray();
+	self.availableCommands = ko.observableArray(["Вверх", "Вниз", "Вправо", "Влево"]);
+	self.selectedCommand = ko.observable("Вверх");
+	
+	self.addCommand = function () {
+		self.commands.push({
+			name : self.selectedCommand()
+		});
+	}
+	
+	self.removeCommand = function (command) {
+		self.commands.remove(command);
+	}
+	
+	//field section
+	self.field = ko.observableArray();
+	for(var i = 0; i < field_height; i++) {
+		var row = ko.observableArray();
+		for(var j = 0; j < field[i].length; j++) {
+			row.push(ELEMENTS['space']);
+		}
+		self.field.push(row);
+	}
+}
+ko.applyBindings(new AlfredModel());
+
 function sleep(milliseconds) {
   var start = new Date().getTime();
   while(true) {
