@@ -35,7 +35,7 @@
 							<div class="btn-group">
 								<a class="btn btn-default js-run"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a>
 								<a class="btn btn-default js-reset"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span></a>
-								<a class="btn btn-default js-new-game"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></a>
+								<a class="btn btn-default js-new-game"><span class="glyphicon glyphicon-refresh" aria-hidden="true" data-bind="click: new_game"></span></a>
 							</div>
 						</div>
                     </div>
@@ -77,90 +77,9 @@
 				</div>
             </div>
             <div class="col-xs-10 col-xs-offset-2">
-                <div class="main no-gutter" id="grid" data-bind="foreach: field">
-                    <div class="row" data-bind="foreach: $data">
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
-                        <div class="col-xs-1"><img src="img/space.png" class="img-responsive"/></div>
+                <div class="main no-gutter" id="grid" data-bind="foreach: { data: field, as: 'row' }">
+                    <div class="row" data-bind="foreach: row">
+                        <div class="col-xs-1"><img class="img-responsive" data-bind="attr: { src: src}"/></div>
                     </div>
                 </div>
             </div>
