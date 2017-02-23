@@ -12,18 +12,12 @@ var AlfredModel = function() {
 	
 	self.availableCommands = ko.observableArray(["Вверх", "Вниз", "Вправо", "Влево"]);
 	
-	self.repeatTimes = ko.observableArray([1,2,3,4,5]);
-	
-	self.selectedTimes = ko.observable(self.repeatTimes()[0]);
-	
-	self.selectedCommand = ko.observable(self.availableCommands()[0]);
-	
 	self.selectedCommandChanged = function () {
-		var times = 11;
+		var times = field_width - 1;
 		self.repeatTimes.removeAll();
 		
 		if(self.selectedCommand() == "Вверх" || self.selectedCommand() == "Вниз") {
-			times = 5;			
+			times = field_height - 1;			
 		}
 		
 		for(var i = 1; i <= times; i++ ) {
@@ -32,6 +26,14 @@ var AlfredModel = function() {
 		
 		self.selectedTimes(self.repeatTimes()[0]);
 	}
+	
+	self.repeatTimes = ko.observableArray();
+	
+	self.selectedTimes = ko.observable(self.repeatTimes()[0]);
+	
+	self.selectedCommand = ko.observable(self.availableCommands()[0]);
+	
+	self.selectedCommandChanged();
 	
 	self.addCommand = function () {
 		self.commands.push({
