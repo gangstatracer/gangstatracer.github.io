@@ -12,13 +12,33 @@ var AlfredModel = function() {
 	
 	self.availableCommands = ko.observableArray(["Вверх", "Вниз", "Вправо", "Влево"]);
 	
-	self.selectedCommand = ko.observable("Вверх");
+	self.repeatTimes = ko.observableArray([1,2,3,4,5]);
+	
+	self.selectedTimes = ko.observable(self.repeatTimes()[0]);
+	
+	self.selectedCommand = ko.observable(self.availableCommands()[0]);
+	
+	self.selectedCommandChanged = function () {
+		var times = 11;
+		self.repeatTimes.removeAll();
+		
+		if(self.selectedCommand() == "Вверх" || self.selectedCommand() == "Вниз") {
+			times = 5;			
+		}
+		
+		for(var i = 1; i <= times; i++ ) {
+			self.repeatTimes.push(i);
+		}
+		
+		self.selectedTimes(self.repeatTimes()[0]);
+	}
 	
 	self.addCommand = function () {
 		self.commands.push({
 			name : self.selectedCommand(),
 			isActive : ko.observable(0),
-			isError : ko.observable(0)
+			isError : ko.observable(0),
+			times : ko.observable(self.selectedTimes())
 		});
 	}
 	
@@ -28,6 +48,7 @@ var AlfredModel = function() {
 	
 	self.executeCommand = function (i) {
 		var new_position = { x : self.robot.x, y : self.robot.y };
+		var under_element = ELEMENTS['space'];
 		switch(self.commands()[i].name){
 			case "Вверх":
 				new_position.x --;
@@ -52,7 +73,8 @@ var AlfredModel = function() {
 			throw new Error("Illegal move");
 		}
 		else {
-			self.putToPoint(self.robot, ELEMENTS['space']);
+			self.putToPoint(self.robot, under_element);
+			under_element = self.field()[new_position.x]()[new_position.y].src();
 			self.putToPoint(new_position, ELEMENTS['robot']);
 			self.robot.x = new_position.x;
 			self.robot.y = new_position.y;
@@ -126,7 +148,7 @@ var AlfredModel = function() {
 		self.resetGame();
 		self.disableButtons(true);
 		
-		var rec_exec = function (i) {
+		var rec_exec = function (i, count) {
 			self.commands()[i].isActive(1);
 			
 			try {
@@ -140,13 +162,20 @@ var AlfredModel = function() {
 			}
 			if ( self.robot.x == self.battery.x && self.robot.y == self.battery.y ) {
 				$('#congratModal').modal();
+				self.disableButtons(false);
+				self.commands()[i].isActive(0);
 				return;
 			}
-			
-			if(i < self.commands().length - 1) {
+			count --;
+			if(i < self.commands().length - 1 || count > 0) {
 				setTimeout(function () {
 					self.commands()[i].isActive(0);
-					rec_exec(i + 1);
+					if ( count > 0 ) {
+						rec_exec(i, count);
+					}
+					else {
+						rec_exec(i + 1, self.commands()[i + 1].times())
+					}
 				}, 500); 				
 			}
 			else {
@@ -155,7 +184,7 @@ var AlfredModel = function() {
 			}
 		};
 		
-		rec_exec(0);
+		rec_exec(0, self.commands()[0].times());
 	}
 	
 	self.GameFieldCell = function (src) {

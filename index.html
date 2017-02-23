@@ -47,6 +47,7 @@
 								<tr>
 									<th>#</th>
 									<th>Команда</th>
+									<th>N</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -54,6 +55,7 @@
 								<tr data-bind="css: {info: isActive, danger: isError}">
 									<td data-bind="text: ($index() + 1)"></td>
 									<td data-bind="text: name"></td>
+									<td data-bind="text: times"></td>
 									<td>
 										<span class="glyphicon glyphicon-remove btn btn-xs" aria-hidden="true" data-bind="click: $root.removeCommand"></span>
 									</td>
@@ -64,9 +66,13 @@
 				</div>
 				<div class="row">
 					<div class="col-xs-12">
-						<div class="input-group">
-							<select class="form-control" id="command-selection" data-bind="options: availableCommands, value: selectedCommand">
+						<div class="input-group input-group-sm">
+							<select class="form-control" id="command-selection" 
+									data-bind="options: availableCommands, value: selectedCommand,
+											   event: { change : selectedCommandChanged }">
 							</select>
+							<span class="input-group-addon" style="border-left: 0; border-right: 0; width: 0px; padding: 0;"></span>
+							<select class="form-control" data-bind="options: repeatTimes, value: selectedTimes"></select>
 							<span class="input-group-btn">
 								<a class="btn btn-default" data-bind="click: addCommand">
 									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
