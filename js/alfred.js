@@ -7,18 +7,65 @@ var AlfredModel = function() {
 	var self = this;
 	
 	//commands section
+	
 	self.commands = ko.observableArray();
+	
 	self.availableCommands = ko.observableArray(["Вверх", "Вниз", "Вправо", "Влево"]);
+	
 	self.selectedCommand = ko.observable("Вверх");
 	
 	self.addCommand = function () {
 		self.commands.push({
-			name : self.selectedCommand()
+			name : self.selectedCommand(),
+			isActive : ko.observable(0),
+			isError : ko.observable(0)
 		});
 	}
 	
 	self.removeCommand = function (command) {
 		self.commands.remove(command);
+	}
+	
+	self.executeCommand = function (i) {
+		var new_position = { x : self.robot.x, y : self.robot.y };
+		switch(self.commands()[i].name){
+			case "Вверх":
+				new_position.x --;
+				break;
+			case "Вниз":
+				new_position.x ++;
+				break;
+			case "Вправо":
+				new_position.y ++;
+				break;
+			case "Влево":
+				new_position.y --;
+				break;
+		}
+		if(
+			new_position.x < 0 
+			|| new_position.y < 0 
+			|| new_position.x >= field_height 
+			|| new_position.y >= field_width
+			|| self.field()[new_position.x]()[new_position.y].src() == ELEMENTS['wall']
+		) {
+			throw new Error("Illegal move");
+		}
+		else {
+			self.putToPoint(self.robot, ELEMENTS['space']);
+			self.putToPoint(new_position, ELEMENTS['robot']);
+			self.robot.x = new_position.x;
+			self.robot.y = new_position.y;
+		}
+	}
+		
+	self.disableButtons = function (disable) {
+		if(disable != false) {
+			$('.btn').addClass('disabled');
+		}
+		else {
+			$('.btn').removeClass('disabled');
+		}
 	}
 	
 	//field section
@@ -37,13 +84,16 @@ var AlfredModel = function() {
 		self.field()[point.x]()[point.y].src(value);
 	}
 	
-	self.new_game = function () {
+	self.newGame = function () {
+		self.disableButtons(true);
+		
 		for(var i = 0; i < self.field().length; i++ ){
 			for(var j = 0; j < self.field()[i]().length; j++ ){
 				self.putToPoint({x: i, y: j}, ELEMENTS['space']);
 			}
 		}
 		self.robot = self.randomEmptyPoint();
+		self.robot_bkp = { x : self.robot.x , y : self.robot.y };
 		self.putToPoint(self.robot, ELEMENTS['robot']);
 
 		self.battery = self.randomEmptyPoint();	
@@ -52,6 +102,60 @@ var AlfredModel = function() {
 		for(var i = 0; i < number_of_walls; i++){
 			self.putToPoint(self.randomEmptyPoint(), ELEMENTS['wall']);
 		}
+		
+		self.disableButtons(false);
+	}
+	
+	self.resetGame = function () {
+		self.disableButtons(true);
+		
+		self.putToPoint(self.robot, ELEMENTS['space']);
+		self.putToPoint(self.robot_bkp, ELEMENTS['robot']);
+		self.putToPoint(self.battery, ELEMENTS['battery']);
+		self.robot.x = self.robot_bkp.x;
+		self.robot.y = self.robot_bkp.y;
+		self.commands().forEach(function (elem, i) {
+			self.commands()[i].isActive(0);
+			self.commands()[i].isError(0);
+		});
+		
+		self.disableButtons(false);
+	}
+	
+	self.startGame = function () {
+		self.resetGame();
+		self.disableButtons(true);
+		
+		var rec_exec = function (i) {
+			self.commands()[i].isActive(1);
+			
+			try {
+				self.executeCommand(i);
+			}
+			catch (err) {
+				self.commands()[i].isActive(0);
+				self.commands()[i].isError(1);
+				self.disableButtons(false);
+				return;
+			}
+			if ( self.robot.x == self.battery.x && self.robot.y == self.battery.y ) {
+				$('#congratModal').modal();
+				return;
+			}
+			
+			if(i < self.commands().length - 1) {
+				setTimeout(function () {
+					self.commands()[i].isActive(0);
+					rec_exec(i + 1);
+				}, 500); 				
+			}
+			else {
+				self.commands()[i].isActive(0);
+				self.disableButtons(false);
+			}
+		};
+		
+		rec_exec(0);
 	}
 	
 	self.GameFieldCell = function (src) {
@@ -67,7 +171,7 @@ var AlfredModel = function() {
 		}
 	}
 	
-	self.new_game();
+	self.newGame();
 }
 
 $(document).ready(function () {
